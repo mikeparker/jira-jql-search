@@ -19,8 +19,14 @@ const filterCustomIssueFields = (issues) => {
 
 const fields = core.getInput('fields') ? core.getInput('fields').split(',') : []
 const jql = core.getInput('jql')
+const maxResults = core.getInput('maxResults') ? parseInt(core.getInput('maxResults')) : 50
 
-jiraClient.searchJira(jql, fields.length ? { fields } : {}).then(response => {
+const searchOptions = { maxResults }
+if (fields.length) {
+  searchOptions.fields = fields
+}
+
+jiraClient.searchJira(jql, searchOptions).then(response => {
   const issues = !fields.length ? filterCustomIssueFields(response.issues) : response.issues
   core.setOutput('issueData', JSON.stringify({ issues, quantity: issues.length }))
   console.log('Completed search')
