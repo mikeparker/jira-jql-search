@@ -22,7 +22,7 @@ If you find this action useful, feel free to donate to my Ethereum address, `0xe
   * If not supplied, all **non 'customfield'** issue data is returned, for finding custom field information,
     first find the name of the field in the JIRA API and add it to the list
     e.g. `summary,description,customfield_10000`
-* `maxResults` - (Integer) Defaults to 50. 
+* `maxResults` - (Integer, default:50) Maximum number of Jira issues returned.
     
 ### Outputs 
 
